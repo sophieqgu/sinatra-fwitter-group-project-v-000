@@ -69,7 +69,7 @@ class TweetsController < ApplicationController
     
   delete '/tweets/:id' do 
     @tweet = Tweet.find(params[:id])
-    if @tweet.user_id == session[:user_id]
+    if @tweet.user_id == current_user.id
       @tweet.destroy
       flash[:message] = "Tweet successfully deleted."
     else 
