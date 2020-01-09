@@ -42,16 +42,14 @@ class TweetsController < ApplicationController
   
 
   get '/tweets/:id/edit' do 
-    @tweet = Tweet.find(params[:id])
-    if logged_in? && @tweet.user_id == current_user.id
-      erb :'tweets/edit_tweet'
-    elsif 
-      !logged_in?
-      redirect to '/login'
-    else   
-      flash[:message] = "You cannot edit other people's tweets."
-      redirect to "/tweets/#{@tweet.id}"
-    end 
+    @tweet = Tweet.find_by_id(params[:id])
+    if logged_in? && @tweet.user == current_user
+      erb :'/tweets/edit_tweet'
+    elsif logged_in? && @tweet.user != current_user
+      redirect "/tweets"
+    else
+      redirect "/login"
+    end
   end 
   
   
