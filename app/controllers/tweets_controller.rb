@@ -8,6 +8,7 @@ class TweetsController < ApplicationController
     end
   end
   
+  
   get '/tweets/new' do 
     if !logged_in?
       redirect to '/login'
@@ -15,6 +16,7 @@ class TweetsController < ApplicationController
       erb :'/tweets/new'
     end
   end 
+  
   
   post '/tweets' do 
     if !params[:content].empty?
@@ -28,10 +30,8 @@ class TweetsController < ApplicationController
     end 
   end 
   
-  get '/users/:slug' do 
-    @user = User.find_by_slug(params[:slug])
-    erb :'/users/show'
-  end 
+  
+ 
     
 
 end
