@@ -18,6 +18,8 @@ class TweetsController < ApplicationController
   
   post '/tweets' do 
     @tweet = Tweet.create(params)
+    @tweet.user = current_user
+    @tweet.save 
     erb :'tweets/show_tweet'
   end 
   
