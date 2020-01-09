@@ -4,9 +4,13 @@
 <h4><%= @tweet.content %></h4><br> 
 <p>--<%= @tweet.user.username %></p>
 
-<form action="/tweets/<%= @tweet.id %>" method="post">
-  <input type="hidden" id="hidden" name="_method" value="delete">
-  <button type="submit" value="submit">Delete Tweet</button>
-</form>
+<% if @tweet.id == current_user.id %>
 
-<a href="/tweet/<%= @tweet.id %>">Edit Tweet</a>
+  <form action="/tweets/<%= @tweet.id %>" method="post">
+    <input type="hidden" id="hidden" name="_method" value="delete">
+    <button type="submit" value="submit">Delete Tweet</button>
+  </form>
+  
+  <a href="/tweet/<%= @tweet.id %>">Edit Tweet</a>
+
+<% end %>
