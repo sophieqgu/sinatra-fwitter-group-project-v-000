@@ -18,11 +18,12 @@ class TweetsController < ApplicationController
   
   post '/tweets' do 
     if params[:tweet][:content]
-    
       @tweet = Tweet.create(params)
       @tweet.user = current_user
       @tweet.save 
       erb :'tweets/show_tweet'
+    else 
+      flash[:message]
   end 
   
   get '/users/:slug' do 
