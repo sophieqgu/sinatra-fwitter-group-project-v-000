@@ -68,8 +68,9 @@ class TweetsController < ApplicationController
     
     
   delete '/tweets/:id' do 
+    @tweet = Tweet.find(params[:id])
     if @tweet.user_id == session[:user_id]
-      Tweet.destroy(params[:id])
+      @tweet.destroy
       flash[:message] = "Tweet successfully deleted."
     else 
       flash[:message] = "You cannot delete other people's tweets."
