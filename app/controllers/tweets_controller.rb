@@ -50,7 +50,7 @@ class TweetsController < ApplicationController
   get '/tweets/:id/edit' do 
     @tweet = Tweet.find(params[:id])
     if @tweet.user_id == current_user.id 
-      erb :'tweets/edit_tweet.erb'
+      erb :'tweets/edit_tweet'
     else 
       flash[:message] = "You cannot edit other people's tweets."
       redirect to "/tweets/#{@tweet.id}"
