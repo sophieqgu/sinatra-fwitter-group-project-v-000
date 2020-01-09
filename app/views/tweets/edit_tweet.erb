@@ -1,6 +1,6 @@
 <h1>Welcome, <%= current_user.username %></h1>
 
-<h3>Edit Your Tweet</h3>
+<h3>Edit Tweet</h3>
 
 <form action='/tweets/<%= @tweet.id %>' method="post">
   <input type="hidden" id="hidden" name="_method" value="patch">
