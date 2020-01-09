@@ -46,9 +46,10 @@ class TweetsController < ApplicationController
     if logged_in? && @tweet.user == current_user
       erb :'/tweets/edit_tweet'
     elsif logged_in? && @tweet.user != current_user
-      redirect "/tweets"
+      flash[:message] = "You cannot edit other people's tweets."
+      redirect to "/tweets/#{@tweet.id}"
     else
-      redirect "/login"
+      redirect to '/login'
     end
   end 
   
