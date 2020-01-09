@@ -53,7 +53,7 @@ class TweetsController < ApplicationController
       erb :'tweets/edit_tweet.erb'
     else 
       flash[:message] = "You cannot edit other people's tweets."
-      redirect to '/tweets/:id'
+      redirect to "/tweets/#{@tweet.id}"
     end 
   end 
   
@@ -61,6 +61,7 @@ class TweetsController < ApplicationController
   patch '/tweets/:id' do 
     @tweet = Tweet.find(params[:id])
     @tweet.update(params)
+    redirect to "/tweets/#{@tweet.id}"
   end 
     
       
