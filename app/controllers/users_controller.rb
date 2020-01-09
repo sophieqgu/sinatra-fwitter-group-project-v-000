@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       flash[:message] = "Missing Username, Email or Password."
       redirect to '/signup'
     else 
-      user = User.create(params[:user])
+      user = User.create(params)
       flash[:message] = "User created successfully. Logging you in.."
       session[:user_id] = user.id
       redirect to '/tweets'
