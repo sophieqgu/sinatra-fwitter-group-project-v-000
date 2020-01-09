@@ -23,7 +23,8 @@ class TweetsController < ApplicationController
       @tweet.save 
       erb :'tweets/show_tweet'
     else 
-      flash[:message]
+      flash[:message] = "Your tweet cannot be empty."
+      redirect to '/tweets/new'
   end 
   
   get '/users/:slug' do 
