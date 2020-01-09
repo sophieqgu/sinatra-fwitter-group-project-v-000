@@ -17,10 +17,12 @@ class TweetsController < ApplicationController
   end 
   
   post '/tweets' do 
-    @tweet = Tweet.create(params)
-    @tweet.user = current_user
-    @tweet.save 
-    erb :'tweets/show_tweet'
+    if params[:tweet][:content]
+    
+      @tweet = Tweet.create(params)
+      @tweet.user = current_user
+      @tweet.save 
+      erb :'tweets/show_tweet'
   end 
   
   get '/users/:slug' do 
