@@ -23,7 +23,7 @@ class TweetsController < ApplicationController
       @tweet = Tweet.create(params)
       @tweet.user = current_user
       @tweet.save 
-      erb :'tweets/show_tweet'
+      redirect to "/tweets/#{@tweet.id}"
     else 
       flash[:message] = "Your tweet cannot be empty."
       redirect to '/tweets/new'
@@ -31,6 +31,14 @@ class TweetsController < ApplicationController
   end 
   
   
+  get '/tweets/:id' do 
+    if !logged_in?
+      redirect to '/login'
+    else
+      @tweet = Tweet.find(params[:id])
+      erb :'tweets/show_tweet'
+    end
+  end 
  
     
 
