@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     end
   end 
   
+  
   post '/signup' do 
     if params[:username].empty? || params[:email].empty? || params[:password].empty?
       flash[:message] = "Missing Username, Email or Password."
@@ -20,6 +21,7 @@ class UsersController < ApplicationController
     end 
   end 
   
+  
   get '/login' do 
     if !logged_in?
       erb :'/users/login'
@@ -27,6 +29,7 @@ class UsersController < ApplicationController
       redirect to '/tweets'
     end 
   end 
+  
   
   post '/login' do 
     user = User.find_by(:username => params[:username])
@@ -39,8 +42,8 @@ class UsersController < ApplicationController
       flash[:message] = "Username or Password is incorrect."
       redirect to '/login'
     end 
-    
   end   
+  
   
   get '/logout' do 
     if !logged_in?
@@ -52,6 +55,11 @@ class UsersController < ApplicationController
     end 
   end 
   
+  
+  get '/users/:slug' do 
+    @user = User.find_by_slug(params[:slug])
+    erb :'/users/show'
+  end 
    
 
 end
