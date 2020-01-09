@@ -39,6 +39,13 @@ class TweetsController < ApplicationController
       erb :'tweets/show_tweet'
     end
   end 
+  
+  
+  delete '/tweets/:id' do 
+    if !logged_in?
+      redirect to '/login'
+    else if 
+      
  
     
 
