@@ -16,6 +16,11 @@ class TweetsController < ApplicationController
     end
   end 
   
+  post '/tweets' do 
+    @tweet = Tweet.create(params)
+    erb :'tweets/show_tweet'
+  end 
+  
   get '/users/:slug' do 
     @user = User.find_by_slug(params[:slug])
     erb :'/users/show'
