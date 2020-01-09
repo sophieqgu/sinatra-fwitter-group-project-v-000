@@ -55,7 +55,8 @@ class TweetsController < ApplicationController
   patch '/tweets/:id' do 
     @tweet = Tweet.find(params[:id])
     if !params[:content].isEmpty?
-      @tweet.update(params[:tweet])
+      @tweet.content = params[:content]
+      @tweet.save
       redirect to "/tweets/#{@tweet.id}"
     else 
       flash[:message] = "Please enter content to update tweet."
