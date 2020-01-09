@@ -2,6 +2,7 @@ class TweetsController < ApplicationController
   
   get '/tweets' do
     if !logged_in?
+      flash[:message] = "You must log in first."
       redirect to '/login'
     else
       erb :'/tweets/tweets'
@@ -11,6 +12,7 @@ class TweetsController < ApplicationController
   
   get '/tweets/new' do 
     if !logged_in?
+      flash[:message] = "You must log in first."
       redirect to '/login'
     else
       erb :'/tweets/new'
@@ -23,6 +25,7 @@ class TweetsController < ApplicationController
       @tweet = Tweet.create(params)
       @tweet.user = current_user
       @tweet.save 
+      flash[:message] = "Tweet posted!"
       redirect to "/tweets/#{@tweet.id}"
     else 
       flash[:message] = "Your tweet cannot be empty."
@@ -33,6 +36,7 @@ class TweetsController < ApplicationController
   
   get '/tweets/:id' do 
     if !logged_in?
+      flash[:message] = "You must log in first."
       redirect to '/login'
     else
       @tweet = Tweet.find(params[:id])
@@ -49,6 +53,7 @@ class TweetsController < ApplicationController
       flash[:message] = "You cannot edit other people's tweets."
       redirect to "/tweets/#{@tweet.id}"
     else
+      flash[:message] = "You must log in first."
       redirect to '/login'
     end
   end 
@@ -78,7 +83,5 @@ class TweetsController < ApplicationController
     redirect to '/tweets'
   end 
       
- 
-    
 
 end
