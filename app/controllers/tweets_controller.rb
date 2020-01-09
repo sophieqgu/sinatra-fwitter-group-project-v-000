@@ -17,7 +17,7 @@ class TweetsController < ApplicationController
   end 
   
   post '/tweets' do 
-    if params[:tweet][:content]
+    if params[:content]
       @tweet = Tweet.create(params)
       @tweet.user = current_user
       @tweet.save 
