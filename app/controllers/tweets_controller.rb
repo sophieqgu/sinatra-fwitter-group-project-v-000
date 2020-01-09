@@ -57,7 +57,7 @@ class TweetsController < ApplicationController
   patch '/tweets/:id' do 
     @tweet = Tweet.find(params[:id])
     if !params[:content] == ""
-      @tweet.update(params)
+      @tweet.create(params)
       flash[:message] = "Tweet successfully updated."
       redirect to "/tweets/#{@tweet.id}"
     else 
