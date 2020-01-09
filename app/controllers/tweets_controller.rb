@@ -25,6 +25,7 @@ class TweetsController < ApplicationController
     else 
       flash[:message] = "Your tweet cannot be empty."
       redirect to '/tweets/new'
+    end 
   end 
   
   get '/users/:slug' do 
