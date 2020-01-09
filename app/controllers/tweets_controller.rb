@@ -58,6 +58,7 @@ class TweetsController < ApplicationController
     @tweet = Tweet.find(params[:id])
     if !params[:content].isEmpty?
       @tweet.update(params)
+      flash[:message] = "Tweet successfully updated."
       redirect to "/tweets/#{@tweet.id}"
     else 
       flash[:message] = "Please enter content to update tweet."
@@ -67,7 +68,12 @@ class TweetsController < ApplicationController
     
     
   delete '/tweets/:id' do 
-    Tweet.destroy(params[:id])
+    if @tweet.user_id == current_user.id
+      Tweet.destroy(params[:id])
+      flash[:message] = "Tweet successfully deleted."
+    else 
+      flash[:message] = "You cannot delete other people's tweets."
+    end 
     redirect to '/tweets'
   end 
       
